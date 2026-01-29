@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white rounded-top">
+          <div class="row align-items-center">
+            <div class="col">
+              <h4 class="mb-0">
+                <i class="fas fa-camera me-2"></i>Live Object Detection
+              </h4>
+            </div>
+            <div class="col-auto">
+              <div class="d-flex gap-2">
+                <span class="badge bg-success" id="detection-status">
+                  <i class="fas fa-circle me-1"></i>Detecting
+                </span>
+                <span class="badge bg-info" id="fps-counter">0 FPS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <!-- Camera Feed Container -->
+          <div class="position-relative" style="background: #000;">
+            <img id="camera-feed" 
+                 src="{{ url_for('video_feed') }}" 
+                 alt="Camera Feed" 
+                 class="w-100"
+                 style="max-height: 600px; object-fit: contain;">
+            
+            <!-- Detection Overlay -->
+            <div class="position-absolute top-0 start-0 p-3">
+              <div class="bg-dark bg-opacity-75 text-white rounded p-2">
+                <h6 class="mb-1">Detection Info</h6>
+                <div class="small">
+                  <div>Objects: <span id="object-count">0</span></div>
+                  <div>Warnings: <span id="warning-count">0</span></div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Controls Overlay -->
+            <div class="position-absolute bottom-0 start-0 end-0 p-3">
+              <div class="bg-dark bg-opacity-75 rounded p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="text-white">
+                    <small>Press 'q' or click Stop to end detection</small>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <button id="toggle-voice" class="btn btn-sm btn-outline-light">
+                      <i class="fas fa-volume-up me-1"></i>Voice ON
+                    </button>
+                    <button id="stop-detection" class="btn btn-sm btn-danger">
+                      <i class="fas fa-stop me-1"></i>Stop
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detection Log -->
+  <div class="row mt-4">
+    <div class="col-md-8">
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-info text-white rounded-top">
+          <h6 class="mb-0">
+            <i class="fas fa-list me-2"></i>Detection Log
+          </h6>
+        </div>
+        <div class="card-body p-0" style="max-height: 300px; overflow-y: auto;">
+          <div id="detection-log" class="p-3">
+            <div class="text-muted text-center">Waiting for detections...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-warning text-white rounded-top">
+          <h6 class="mb-0">
+            <i class="fas fa-exclamation-triangle me-2"></i>Recent Warnings
+          </h6>
+        </div>
+        <div class="card-body p-0" style="max-height: 300px; overflow-y: auto;">
+          <div id="warning-log" class="p-3">
+            <div class="text-muted text-center">No warnings yet...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.card {
+  transition: all 0.3s ease;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+#camera-feed {
+  display: block;
+}
+
+.detection-item {
+  animation: slideIn 0.3s ease;
+}
+
+.warning-item {
+  animation: slideIn 0.3s ease;
+  border-left: 4px solid #dc3545;
+  padding-left: 10px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.badge {
+  font-size: 0.8em;
+}
+</style>
+
+<script>
+let voiceEnabled = true;
+let detectionCount = 0;
+let warningCount = 0;
+let fps = 0;
+let lastFrameTime = Date.now();
+
+// Simulate detection updates (in real app, this would come from WebSocket or server-sent events)
+function updateDetectionInfo() {
+  // Update FPS
+  const now = Date.now();
+  const deltaTime = now - lastFrameTime;
+  fps = Math.round(1000 / deltaTime);
+  lastFrameTime = now;
+  document.getElementById('fps-counter').textContent = fps + ' FPS';
+  
+  // Simulate random detections (remove in production)
+  if (Math.random() > 0.8) {
+    const objects = ['person', 'car', 'bicycle', 'dog', 'chair'];
+    const object = objects[Math.floor(Math.random() * objects.length)];
+    const distance = (Math.random() * 5 + 0.5).toFixed(1);
+    const isWarning = parseFloat(distance) < 2;
+    
+    addDetectionLog(object, distance, isWarning);
+    
+    if (isWarning) {
+      addWarningLog(object, distance);
+      warningCount++;
+      document.getElementById('warning-count').textContent = warningCount;
+    }
+    
+    detectionCount++;
+    document.getElementById('object-count').textContent = detectionCount;
+  }
+}
+
+function addDetectionLog(object, distance, isWarning) {
+  const log = document.getElementById('detection-log');
+  const time = new Date().toLocaleTimeString();
+  const item = document.createElement('div');
+  item.className = 'detection-item mb-2 p-2 bg-light rounded';
+  item.innerHTML = `
+    <div class="d-flex justify-content-between align-items-center">
+      <span>
+        <i class="fas fa-${isWarning ? 'exclamation-triangle text-warning' : 'check-circle text-success'} me-2"></i>
+        <strong>${object}</strong> at ${distance}m
+      </span>
+      <small class="text-muted">${time}</small>
+    </div>
+  `;
+  
+  if (log.children[0]?.classList.contains('text-muted')) {
+    log.innerHTML = '';
+  }
+  
+  log.insertBefore(item, log.firstChild);
+  
+  // Keep only last 20 items
+  while (log.children.length > 20) {
+    log.removeChild(log.lastChild);
+  }
+}
+
+function addWarningLog(object, distance) {
+  const log = document.getElementById('warning-log');
+  const time = new Date().toLocaleTimeString();
+  const item = document.createElement('div');
+  item.className = 'warning-item mb-2 p-2 bg-warning bg-opacity-10 rounded';
+  item.innerHTML = `
+    <div class="d-flex justify-content-between align-items-center">
+      <span>
+        <i class="fas fa-exclamation-triangle text-danger me-2"></i>
+        <strong>${object}</strong> too close (${distance}m)
+      </span>
+      <small class="text-muted">${time}</small>
+    </div>
+  `;
+  
+  if (log.children[0]?.classList.contains('text-muted')) {
+    log.innerHTML = '';
+  }
+  
+  log.insertBefore(item, log.firstChild);
+  
+  // Keep only last 10 warnings
+  while (log.children.length > 10) {
+    log.removeChild(log.lastChild);
+  }
+}
+
+// Toggle voice
+document.getElementById('toggle-voice').addEventListener('click', function() {
+  fetch('{{ url_for("toggle_voice") }}')
+    .then(response => response.json())
+    .then(data => {
+      voiceEnabled = data.voice_enabled;
+      this.innerHTML = voiceEnabled ? 
+        '<i class="fas fa-volume-up me-1"></i>Voice ON' : 
+        '<i class="fas fa-volume-mute me-1"></i>Voice OFF';
+      this.className = voiceEnabled ? 
+        'btn btn-sm btn-outline-light' : 
+        'btn btn-sm btn-outline-secondary';
+    })
+    .catch(error => console.error('Error toggling voice:', error));
+});
+
+// Stop detection
+document.getElementById('stop-detection').addEventListener('click', function() {
+  window.location.href = '{{ url_for("stop_detection") }}';
+});
+
+// Update detection info every 100ms
+setInterval(updateDetectionInfo, 100);
+
+// Handle keyboard shortcut
+document.addEventListener('keypress', function(e) {
+  if (e.key === 'q' || e.key === 'Q') {
+    window.location.href = '{{ url_for("stop_detection") }}';
+  }
+});
+</script>
+{% endblock %}

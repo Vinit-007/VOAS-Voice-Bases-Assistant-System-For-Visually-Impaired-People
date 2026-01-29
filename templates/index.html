@@ -1,0 +1,726 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid px-0">
+  <!-- Hero Section -->
+  <section class="hero-section" style="min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
+    <div class="container">
+      <div class="row align-items-center min-vh-100">
+        <div class="col-lg-6">
+          <div class="hero-content text-white">
+            <div class="badge bg-danger mb-3 animate__animated animate__fadeIn">🚀 Revolutionary Technology</div>
+            <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInUp">
+              VisionAssist Pro
+            </h1>
+            <h2 class="h4 mb-4 text-light">Empowering Visually Impaired Through AI</h2>
+            <p class="lead mb-5">
+              Experience cutting-edge assistance with real-time AI object detection, 
+              intelligent voice guidance, and comprehensive medical information management.
+              Join thousands who've transformed their daily lives with our technology.
+            </p>
+            
+            <div class="d-flex flex-wrap gap-3 mb-5">
+              <a href="{{ url_for('login') }}" class="btn btn-light btn-lg px-4 py-3 rounded-pill hover-lift">
+                <i class="fas fa-user me-2"></i>Get Started
+              </a>
+              <a href="{{ url_for('admin_login') }}" class="btn btn-outline-light btn-lg px-4 py-3 rounded-pill hover-lift">
+                <i class="fas fa-user-shield me-2"></i>Admin Access
+              </a>
+            </div>
+            
+            <!-- Enhanced Stats -->
+            <div class="row g-4 mb-5">
+              <div class="col-4">
+                <div class="text-center stat-card">
+                  <h3 class="fw-bold counter" data-target="80">0</h3>
+                  <p class="small mb-0">Object Types</p>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="text-center stat-card">
+                  <h3 class="fw-bold counter" data-target="10000">0</h3>
+                  <p class="small mb-0">Users Helped</p>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="text-center stat-card">
+                  <h3 class="fw-bold">99.9%</h3>
+                  <p class="small mb-0">Uptime</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-shield-alt fa-2x me-3 text-warning"></i>
+                  <div>
+                    <h6 class="mb-0">Bank-Level Security</h6>
+                    <small class="text-light">Your data is protected</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-award fa-2x me-3 text-success"></i>
+                  <div>
+                    <h6 class="mb-0">Award Winning</h6>
+                    <small class="text-light">Innovation in accessibility</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="hero-image text-center">
+            <div class="position-relative">
+              <div class="floating-card bg-white rounded-4 shadow-lg p-4 mb-4">
+                <div class="d-flex align-items-center">
+                  <div class="bg-primary rounded-circle p-3 me-3">
+                    <i class="fas fa-eye text-white fa-2x"></i>
+                  </div>
+                  <div>
+                    <h5 class="mb-1">AI Detection Active</h5>
+                    <p class="text-muted mb-0">Person detected at 2.5m</p>
+                    <div class="progress mt-2" style="height: 4px;">
+                      <div class="progress-bar bg-success" style="width: 95%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="floating-card bg-white rounded-4 shadow-lg p-4 mb-4" style="margin-left: 50px;">
+                <div class="d-flex align-items-center">
+                  <div class="bg-success rounded-circle p-3 me-3">
+                    <i class="fas fa-volume-up text-white fa-2x"></i>
+                  </div>
+                  <div>
+                    <h5 class="mb-1">Voice Alert</h5>
+                    <p class="text-muted mb-0">"Warning: Object too close"</p>
+                    <small class="text-success">✓ Voice guidance active</small>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="floating-card bg-white rounded-4 shadow-lg p-4" style="margin-left: 25px;">
+                <div class="d-flex align-items-center">
+                  <div class="bg-info rounded-circle p-3 me-3">
+                    <i class="fas fa-heartbeat text-white fa-2x"></i>
+                  </div>
+                  <div>
+                    <h5 class="mb-1">Medical Info</h5>
+                    <p class="text-muted mb-0">Emergency contacts ready</p>
+                    <small class="text-info">⚡ Quick access enabled</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Features Section -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Powerful Features</h2>
+        <p class="lead text-muted">Everything you need for enhanced independence and safety</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm hover-lift feature-card">
+            <div class="card-body text-center p-4">
+              <div class="bg-primary bg-gradient rounded-circle p-3 d-inline-block mb-3">
+                <i class="fas fa-camera fa-2x text-white"></i>
+              </div>
+              <h4 class="card-title">Real-time Detection</h4>
+              <p class="card-text text-muted">
+                Advanced YOLOv3 AI detects 80+ objects with 95%+ accuracy in real-time
+              </p>
+              <ul class="list-unstyled text-start small">
+                <li><i class="fas fa-check text-success me-2"></i>Instant object recognition</li>
+                <li><i class="fas fa-check text-success me-2"></i>Distance calculation</li>
+                <li><i class="fas fa-check text-success me-2"></i>Smart filtering</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm hover-lift feature-card">
+            <div class="card-body text-center p-4">
+              <div class="bg-success bg-gradient rounded-circle p-3 d-inline-block mb-3">
+                <i class="fas fa-volume-up fa-2x text-white"></i>
+              </div>
+              <h4 class="card-title">Voice Guidance</h4>
+              <p class="card-text text-muted">
+                Natural text-to-speech alerts with customizable voice settings
+              </p>
+              <ul class="list-unstyled text-start small">
+                <li><i class="fas fa-check text-success me-2"></i>Clear voice alerts</li>
+                <li><i class="fas fa-check text-success me-2"></i>Multiple languages</li>
+                <li><i class="fas fa-check text-success me-2"></i>Volume control</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm hover-lift feature-card">
+            <div class="card-body text-center p-4">
+              <div class="bg-info bg-gradient rounded-circle p-3 d-inline-block mb-3">
+                <i class="fas fa-ruler fa-2x text-white"></i>
+              </div>
+              <h4 class="card-title">Distance Measurement</h4>
+              <p class="card-text text-muted">
+                Precise distance calculation to help navigate safely
+              </p>
+              <ul class="list-unstyled text-start small">
+                <li><i class="fas fa-check text-success me-2"></i>Accurate measurements</li>
+                <li><i class="fas fa-check text-success me-2"></i>Proximity warnings</li>
+                <li><i class="fas fa-check text-success me-2"></i>Safety alerts</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm hover-lift feature-card">
+            <div class="card-body text-center p-4">
+              <div class="bg-warning bg-gradient rounded-circle p-3 d-inline-block mb-3">
+                <i class="fas fa-notes-medical fa-2x text-white"></i>
+              </div>
+              <h4 class="card-title">Medical Records</h4>
+              <p class="card-text text-muted">
+                Secure storage of medical information and emergency contacts
+              </p>
+              <ul class="list-unstyled text-start small">
+                <li><i class="fas fa-check text-success me-2"></i>HIPAA compliant</li>
+                <li><i class="fas fa-check text-success me-2"></i>Emergency access</li>
+                <li><i class="fas fa-check text-success me-2"></i>Quick sharing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm hover-lift feature-card">
+            <div class="card-body text-center p-4">
+              <div class="bg-danger bg-gradient rounded-circle p-3 d-inline-block mb-3">
+                <i class="fas fa-shield-alt fa-2x text-white"></i>
+              </div>
+              <h4 class="card-title">Enterprise Security</h4>
+              <p class="card-text text-muted">
+                Bank-level encryption and complete data privacy protection
+              </p>
+              <ul class="list-unstyled text-start small">
+                <li><i class="fas fa-check text-success me-2"></i>End-to-end encryption</li>
+                <li><i class="fas fa-check text-success me-2"></i>GDPR compliant</li>
+                <li><i class="fas fa-check text-success me-2"></i>Regular audits</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm hover-lift feature-card">
+            <div class="card-body text-center p-4">
+              <div class="bg-secondary bg-gradient rounded-circle p-3 d-inline-block mb-3">
+                <i class="fas fa-mobile-alt fa-2x text-white"></i>
+              </div>
+              <h4 class="card-title">Easy to Use</h4>
+              <p class="card-text text-muted">
+                Intuitive interface designed for accessibility and simplicity
+              </p>
+              <ul class="list-unstyled text-start small">
+                <li><i class="fas fa-check text-success me-2"></i>Simple navigation</li>
+                <li><i class="fas fa-check text-success me-2"></i>Voice commands</li>
+                <li><i class="fas fa-check text-success me-2"></i>One-click access</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">What Our Users Say</h2>
+        <p class="lead text-muted">Real stories from people whose lives we've transformed</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4">
+              <div class="mb-3">
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+              </div>
+              <p class="card-text">"VisionAssist Pro has completely changed my daily life. I can now navigate confidently and independently."</p>
+              <footer class="blockquote-footer">
+                <strong>Sarah Johnson</strong><br>
+                <small class="text-muted">User for 2 years</small>
+              </footer>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4">
+              <div class="mb-3">
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+              </div>
+              <p class="card-text">"The voice guidance is incredibly accurate. It's like having a personal assistant with me everywhere."</p>
+              <footer class="blockquote-footer">
+                <strong>Michael Chen</strong><br>
+                <small class="text-muted">User for 1 year</small>
+              </footer>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4">
+              <div class="mb-3">
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+              </div>
+              <p class="card-text">"The medical records feature gives me peace of mind knowing my information is always accessible."</p>
+              <footer class="blockquote-footer">
+                <strong>Emily Rodriguez</strong><br>
+                <small class="text-muted">User for 6 months</small>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Statistics Section -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Trusted Worldwide</h2>
+        <p class="lead text-muted">Making a difference in thousands of lives every day</p>
+      </div>
+      
+      <div class="row g-4 text-center">
+        <div class="col-md-3">
+          <div class="stat-item">
+            <h3 class="fw-bold text-primary counter" data-target="50000">0</h3>
+            <p class="mb-0">Active Users</p>
+            <small class="text-success">+12% this month</small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-item">
+            <h3 class="fw-bold text-success counter" data-target="1000000">0</h3>
+            <p class="mb-0">Objects Detected</p>
+            <small class="text-success">Daily average</small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-item">
+            <h3 class="fw-bold text-info counter" data-target="150">0</h3>
+            <p class="mb-0">Countries</p>
+            <small class="text-success">Global reach</small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-item">
+            <h3 class="fw-bold text-warning">99.9%</h3>
+            <p class="mb-0">Accuracy Rate</p>
+            <small class="text-success">Industry leading</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Stack Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Powered by Cutting-Edge Technology</h2>
+        <p class="lead text-muted">Built with the latest AI and computer vision innovations</p>
+      </div>
+      
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6">
+          <div class="tech-stack">
+            <div class="d-flex align-items-center mb-4">
+              <div class="bg-primary bg-gradient rounded-circle p-3 me-3">
+                <i class="fas fa-brain fa-2x text-white"></i>
+              </div>
+              <div>
+                <h5 class="mb-1">YOLOv3 Neural Network</h5>
+                <p class="text-muted mb-0">State-of-the-art object detection with 80+ object classes</p>
+              </div>
+            </div>
+            
+            <div class="d-flex align-items-center mb-4">
+              <div class="bg-success bg-gradient rounded-circle p-3 me-3">
+                <i class="fas fa-microchip fa-2x text-white"></i>
+              </div>
+              <div>
+                <h5 class="mb-1">OpenCV Computer Vision</h5>
+                <p class="text-muted mb-0">Real-time image processing and analysis</p>
+              </div>
+            </div>
+            
+            <div class="d-flex align-items-center mb-4">
+              <div class="bg-info bg-gradient rounded-circle p-3 me-3">
+                <i class="fas fa-volume-up fa-2x text-white"></i>
+              </div>
+              <div>
+                <h5 class="mb-1">Advanced Text-to-Speech</h5>
+                <p class="text-muted mb-0">Natural voice guidance with multiple language support</p>
+              </div>
+            </div>
+            
+            <div class="d-flex align-items-center">
+              <div class="bg-warning bg-gradient rounded-circle p-3 me-3">
+                <i class="fas fa-shield-alt fa-2x text-white"></i>
+              </div>
+              <div>
+                <h5 class="mb-1">Enterprise Security</h5>
+                <p class="text-muted mb-0">End-to-end encryption and HIPAA compliance</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card shadow border-0 rounded-4">
+            <div class="card-body p-4">
+              <h5 class="card-title mb-4">Performance Metrics</h5>
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Detection Speed</span>
+                  <span class="text-success">95%</span>
+                </div>
+                <div class="progress" style="height: 8px;">
+                  <div class="progress-bar bg-success" style="width: 95%"></div>
+                </div>
+              </div>
+              
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Voice Accuracy</span>
+                  <span class="text-info">92%</span>
+                </div>
+                <div class="progress" style="height: 8px;">
+                  <div class="progress-bar bg-info" style="width: 92%"></div>
+                </div>
+              </div>
+              
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Distance Calculation</span>
+                  <span class="text-warning">88%</span>
+                </div>
+                <div class="progress" style="height: 8px;">
+                  <div class="progress-bar bg-warning" style="width: 88%"></div>
+                </div>
+              </div>
+              
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-2">
+                  <span>User Satisfaction</span>
+                  <span class="text-primary">98%</span>
+                </div>
+                <div class="progress" style="height: 8px;">
+                  <div class="progress-bar bg-primary" style="width: 98%"></div>
+                </div>
+              </div>
+              
+              <div class="text-center mt-4">
+                <div class="badge bg-success bg-gradient p-2">
+                  <i class="fas fa-award me-2"></i>Award Winning Technology
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Trusted by Leading Organizations</h2>
+        <p class="lead text-muted">Partnering with institutions worldwide to enhance accessibility</p>
+      </div>
+      
+      <div class="row g-4 align-items-center">
+        <div class="col-md-3 text-center">
+          <div class="partner-logo">
+            <i class="fas fa-university fa-3x text-primary mb-3"></i>
+            <h6>Harvard Medical</h6>
+            <small class="text-muted">Research Partner</small>
+          </div>
+        </div>
+        <div class="col-md-3 text-center">
+          <div class="partner-logo">
+            <i class="fas fa-eye fa-3x text-success mb-3"></i>
+            <h6>Vision Institute</h6>
+            <small class="text-muted">Technology Partner</small>
+          </div>
+        </div>
+        <div class="col-md-3 text-center">
+          <div class="partner-logo">
+            <i class="fas fa-hand-holding-heart fa-3x text-info mb-3"></i>
+            <h6>Red Cross</h6>
+            <small class="text-muted">Accessibility Partner</small>
+          </div>
+        </div>
+        <div class="col-md-3 text-center">
+          <div class="partner-logo">
+            <i class="fas fa-graduation-cap fa-3x text-warning mb-3"></i>
+            <h6>MIT Labs</h6>
+            <small class="text-muted">Innovation Partner</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards Section -->
+  <section class="py-5 bg-gradient text-white">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-4 fw-bold mb-3">Recognition & Awards</h2>
+        <p class="lead">Celebrating excellence in accessibility innovation</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="award-card text-center">
+            <div class="bg-white bg-opacity-20 rounded-circle p-4 d-inline-block mb-3">
+              <i class="fas fa-trophy fa-3x text-white"></i>
+            </div>
+            <h5>Innovation Award 2024</h5>
+            <p class="mb-0">Best Accessibility Technology</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="award-card text-center">
+            <div class="bg-white bg-opacity-20 rounded-circle p-4 d-inline-block mb-3">
+              <i class="fas fa-medal fa-3x text-white"></i>
+            </div>
+            <h5>AI Excellence Award</h5>
+            <p class="mb-0">Computer Vision Innovation</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="award-card text-center">
+            <div class="bg-white bg-opacity-20 rounded-circle p-4 d-inline-block mb-3">
+              <i class="fas fa-star fa-3x text-white"></i>
+            </div>
+            <h5>User Choice Award</h5>
+            <p class="mb-0">Most Trusted Solution</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced CTA Section -->
+  <section class="py-5 bg-gradient text-white">
+    <div class="container text-center">
+      <h2 class="display-4 fw-bold mb-4">Ready to Transform Your Life?</h2>
+      <p class="lead mb-4">
+        Join over 10,000 users who have already enhanced their independence with VisionAssist Pro
+      </p>
+      <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="stat-item">
+                <h3 class="fw-bold">24/7</h3>
+                <p class="mb-0">Support Available</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-item">
+                <h3 class="fw-bold">Free</h3>
+                <p class="mb-0">Trial Period</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-item">
+                <h3 class="fw-bold">30 Days</h3>
+                <p class="mb-0">Money Back</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="{{ url_for('register') }}" class="btn btn-light btn-lg px-4 py-3 rounded-pill hover-lift">
+          <i class="fas fa-user-plus me-2"></i>Start Free Trial
+        </a>
+        <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg px-4 py-3 rounded-pill hover-lift">
+          <i class="fas fa-sign-in-alt me-2"></i>Login
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+.floating-card {
+  animation: float 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.floating-card:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.floating-card:nth-child(3) {
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+.feature-card {
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.bg-gradient {
+  background: linear-gradient(45deg, #667eea, #764ba2) !important;
+}
+
+.counter {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.tech-stack {
+  padding: 20px 0;
+}
+
+.partner-logo {
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.partner-logo:hover {
+  transform: translateY(-5px);
+}
+
+.award-card {
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.award-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.progress {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  transition: width 0.6s ease;
+}
+</style>
+
+<script>
+// Counter animation
+document.addEventListener('DOMContentLoaded', function() {
+  const counters = document.querySelectorAll('.counter');
+  const speed = 200;
+
+  counters.forEach(counter => {
+    const animate = () => {
+      const value = +counter.getAttribute('data-target');
+      const data = +counter.innerText;
+      const time = value / speed;
+      
+      if (data < value) {
+        counter.innerText = Math.ceil(data + time);
+        setTimeout(animate, 1);
+      } else {
+        counter.innerText = value;
+      }
+    }
+    animate();
+  });
+});
+</script>
+{% endblock %}

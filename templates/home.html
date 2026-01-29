@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+          <div class="text-center mb-5">
+            <div class="bg-success bg-gradient rounded-circle p-4 d-inline-block mb-3">
+              <i class="fas fa-eye fa-3x text-white"></i>
+            </div>
+            <h1 class="display-4 fw-bold mb-3">Welcome to VisionAssist Pro</h1>
+            <p class="lead text-muted">Your personal AI-powered visual assistance system</p>
+          </div>
+
+          <!-- User Info Card -->
+          <div class="row mb-5">
+            <div class="col-md-6 mx-auto">
+              <div class="card bg-light border-0">
+                <div class="card-body text-center">
+                  <h5 class="card-title">
+                    <i class="fas fa-user-circle me-2"></i>User Dashboard
+                  </h5>
+                  <p class="card-text">
+                    <strong>Logged in as:</strong> {{ session.user_id }}<br>
+                    <small class="text-muted">Access all features below</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Features -->
+          <div class="row g-4 mb-5">
+            <div class="col-md-6">
+              <div class="card h-100 border-0 shadow-sm hover-lift">
+                <div class="card-body text-center p-4">
+                  <div class="bg-primary bg-gradient rounded-circle p-3 d-inline-block mb-3">
+                    <i class="fas fa-camera fa-2x text-white"></i>
+                  </div>
+                  <h4 class="card-title">Start Object Detection</h4>
+                  <p class="card-text text-muted">
+                    Launch AI-powered real-time object detection with voice guidance
+                  </p>
+                  <form method="post" action="{{ url_for('home') }}">
+                    <button type="submit" name="start_detection" value="Start Detection" 
+                            class="btn btn-primary btn-lg rounded-pill">
+                      <i class="fas fa-play me-2"></i>Start Detection
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="card h-100 border-0 shadow-sm hover-lift">
+                <div class="card-body text-center p-4">
+                  <div class="bg-info bg-gradient rounded-circle p-3 d-inline-block mb-3">
+                    <i class="fas fa-heartbeat fa-2x text-white"></i>
+                  </div>
+                  <h4 class="card-title">Medical Information</h4>
+                  <p class="card-text text-muted">
+                    Manage your medical records and emergency contacts
+                  </p>
+                  <a href="{{ url_for('medical_info') }}" class="btn btn-info btn-lg rounded-pill text-white">
+                    <i class="fas fa-notes-medical me-2"></i>Medical Info
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="card bg-light border-0">
+                <div class="card-body text-center">
+                  <i class="fas fa-cog fa-2x text-primary mb-2"></i>
+                  <h6>Settings</h6>
+                  <p class="small text-muted">Configure preferences</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card bg-light border-0">
+                <div class="card-body text-center">
+                  <i class="fas fa-history fa-2x text-success mb-2"></i>
+                  <h6>Detection History</h6>
+                  <p class="small text-muted">View past detections</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card bg-light border-0">
+                <div class="card-body text-center">
+                  <i class="fas fa-question-circle fa-2x text-info mb-2"></i>
+                  <h6>Help & Support</h6>
+                  <p class="small text-muted">Get assistance</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logout Button -->
+          <div class="text-center mt-5">
+            <a href="{{ url_for('logout') }}" class="btn btn-outline-danger rounded-pill">
+              <i class="fas fa-sign-out-alt me-2"></i>Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.bg-gradient {
+  background: linear-gradient(45deg, var(--bs-primary), var(--bs-secondary)) !important;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <div class="bg-primary bg-gradient rounded-circle p-3 d-inline-block mb-3">
+              <i class="fas fa-user fa-2x text-white"></i>
+            </div>
+            <h2 class="fw-bold">Welcome Back</h2>
+            <p class="text-muted">Login to your VisionAssist Pro account</p>
+          </div>
+
+          <form method="post" action="{{ url_for('login') }}">
+            {% if mesage is defined and mesage %}
+              <div class="alert alert-warning">{{ mesage }}</div>
+            {% endif %}
+
+            <div class="mb-4">
+              <label for="email" class="form-label fw-semibold">
+                <i class="fas fa-envelope me-2"></i>Email Address
+              </label>
+              <div class="input-group">
+                <span class="input-group-text bg-primary text-white">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <input type="email" id="email" name="email" class="form-control form-control-lg" 
+                       placeholder="Enter your email address" required>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="password" class="form-label fw-semibold">
+                <i class="fas fa-lock me-2"></i>Password
+              </label>
+              <div class="input-group">
+                <span class="input-group-text bg-primary text-white">
+                  <i class="fas fa-key"></i>
+                </span>
+                <input type="password" id="password" name="pass1" class="form-control form-control-lg" 
+                       placeholder="Enter your password" required>
+              </div>
+            </div>
+
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-primary btn-lg rounded-pill">
+                <i class="fas fa-sign-in-alt me-2"></i>Login to Account
+              </button>
+            </div>
+          </form>
+
+          <div class="text-center">
+            <p class="mb-2">Don't have an account?</p>
+            <a href="{{ url_for('register') }}" class="btn btn-outline-primary rounded-pill">
+              <i class="fas fa-user-plus me-2"></i>Sign Up Now
+            </a>
+          </div>
+
+          <div class="text-center mt-4">
+            <a href="{{ url_for('base') }}" class="text-muted text-decoration-none">
+              <i class="fas fa-arrow-left me-1"></i>Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.input-group-text {
+  border: none;
+}
+
+.form-control {
+  border-left: none;
+}
+
+.form-control:focus {
+  border-left: none;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+</style>
+{% endblock %}

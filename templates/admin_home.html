@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid py-4">
+  <!-- Admin Header -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-body p-4">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <h1 class="fw-bold mb-0">
+                <i class="fas fa-cog me-2 text-danger"></i>Admin Dashboard
+              </h1>
+              <p class="text-muted mb-0">VisionAssist Pro Administration Panel</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+              <div class="badge bg-success me-2">
+                <i class="fas fa-circle me-1"></i>System Online
+              </div>
+              <span class="text-muted">
+                <i class="fas fa-clock me-1"></i>
+                <span id="current-time"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm rounded-3 stat-card-primary">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center">
+            <div class="bg-primary bg-gradient rounded-circle p-3 me-3">
+              <i class="fas fa-users fa-2x text-white"></i>
+            </div>
+            <div>
+              <h3 class="fw-bold mb-0">1,247</h3>
+              <p class="text-muted mb-0">Total Users</p>
+              <small class="text-success">
+                <i class="fas fa-arrow-up me-1"></i>12% this month
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm rounded-3 stat-card-success">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center">
+            <div class="bg-success bg-gradient rounded-circle p-3 me-3">
+              <i class="fas fa-file-medical fa-2x text-white"></i>
+            </div>
+            <div>
+              <h3 class="fw-bold mb-0">856</h3>
+              <p class="text-muted mb-0">Medical Records</p>
+              <small class="text-success">
+                <i class="fas fa-arrow-up me-1"></i>8% this month
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm rounded-3 stat-card-info">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center">
+            <div class="bg-info bg-gradient rounded-circle p-3 me-3">
+              <i class="fas fa-camera fa-2x text-white"></i>
+            </div>
+            <div>
+              <h3 class="fw-bold mb-0">45.2K</h3>
+              <p class="text-muted mb-0">Detections Today</p>
+              <small class="text-success">
+                <i class="fas fa-arrow-up me-1"></i>23% increase
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm rounded-3 stat-card-warning">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center">
+            <div class="bg-warning bg-gradient rounded-circle p-3 me-3">
+              <i class="fas fa-server fa-2x text-white"></i>
+            </div>
+            <div>
+              <h3 class="fw-bold mb-0">99.9%</h3>
+              <p class="text-muted mb-0">Uptime</p>
+              <small class="text-success">
+                <i class="fas fa-check me-1"></i>Excellent
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="row g-4 mb-4">
+    <div class="col-12">
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-danger text-white rounded-top">
+          <h5 class="mb-0">
+            <i class="fas fa-bolt me-2"></i>Quick Actions
+          </h5>
+        </div>
+        <div class="card-body p-4">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <a href="{{ url_for('database_viewer') }}" class="btn btn-outline-primary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                <i class="fas fa-database fa-2x mb-2"></i>
+                <span>Database Viewer</span>
+                <small class="text-muted">View all data</small>
+              </a>
+            </div>
+            <div class="col-md-3">
+              <a href="{{ url_for('view_user') }}" class="btn btn-outline-success w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                <i class="fas fa-users fa-2x mb-2"></i>
+                <span>Manage Users</span>
+                <small class="text-muted">Edit/Delete users</small>
+              </a>
+            </div>
+            <div class="col-md-3">
+              <a href="{{ url_for('view_medical') }}" class="btn btn-outline-info w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                <i class="fas fa-file-medical fa-2x mb-2"></i>
+                <span>Medical Records</span>
+                <small class="text-muted">View health data</small>
+              </a>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-outline-warning w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                <i class="fas fa-chart-bar fa-2x mb-2"></i>
+                <span>Analytics</span>
+                <small class="text-muted">Coming soon</small>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activity & System Info -->
+  <div class="row g-4">
+    <div class="col-md-8">
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-primary text-white rounded-top">
+          <h5 class="mb-0">
+            <i class="fas fa-history me-2"></i>Recent Activity
+          </h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Time</th>
+                  <th>User</th>
+                  <th>Action</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2 mins ago</td>
+                  <td>Sarah Johnson</td>
+                  <td>Started object detection</td>
+                  <td><span class="badge bg-success">Success</span></td>
+                </tr>
+                <tr>
+                  <td>5 mins ago</td>
+                  <td>Michael Chen</td>
+                  <td>Updated medical info</td>
+                  <td><span class="badge bg-success">Success</span></td>
+                </tr>
+                <tr>
+                  <td>12 mins ago</td>
+                  <td>Emily Rodriguez</td>
+                  <td>New user registration</td>
+                  <td><span class="badge bg-info">New</span></td>
+                </tr>
+                <tr>
+                  <td>1 hour ago</td>
+                  <td>John Doe</td>
+                  <td>Login attempt</td>
+                  <td><span class="badge bg-warning">Failed</span></td>
+                </tr>
+                <tr>
+                  <td>2 hours ago</td>
+                  <td>Admin</td>
+                  <td>Database backup</td>
+                  <td><span class="badge bg-success">Complete</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card shadow border-0 rounded-4 mb-4">
+        <div class="card-header bg-info text-white rounded-top">
+          <h5 class="mb-0">
+            <i class="fas fa-server me-2"></i>System Status
+          </h5>
+        </div>
+        <div class="card-body p-4">
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span>Database</span>
+              <span class="badge bg-success">Online</span>
+            </div>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-success" style="width: 100%"></div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span>AI Detection</span>
+              <span class="badge bg-success">Active</span>
+            </div>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-success" style="width: 95%"></div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span>Voice Service</span>
+              <span class="badge bg-success">Running</span>
+            </div>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-success" style="width: 100%"></div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span>Storage</span>
+              <span class="badge bg-warning">78%</span>
+            </div>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-warning" style="width: 78%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-warning text-white rounded-top">
+          <h5 class="mb-0">
+            <i class="fas fa-exclamation-triangle me-2"></i>System Alerts
+          </h5>
+        </div>
+        <div class="card-body p-4">
+          <div class="alert alert-info border-0 mb-2">
+            <small><i class="fas fa-info-circle me-1"></i> System backup scheduled for 2:00 AM</small>
+          </div>
+          <div class="alert alert-warning border-0 mb-2">
+            <small><i class="fas fa-exclamation-triangle me-1"></i> Storage usage at 78%</small>
+          </div>
+          <div class="alert alert-success border-0 mb-0">
+            <small><i class="fas fa-check-circle me-1"></i> All systems operational</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.stat-card-primary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,123,255,0.2);
+}
+
+.stat-card-success:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(40,167,69,0.2);
+}
+
+.stat-card-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(23,162,184,0.2);
+}
+
+.stat-card-warning:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255,193,7,0.2);
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover, .btn-outline-success:hover, 
+.btn-outline-info:hover, .btn-outline-warning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.table-responsive {
+  max-height: 400px;
+  overflow-y: auto;
+}
+</style>
+
+<script>
+// Update current time
+function updateTime() {
+  const now = new Date();
+  document.getElementById('current-time').textContent = now.toLocaleString();
+}
+updateTime();
+setInterval(updateTime, 1000);
+</script>
+{% endblock %}
