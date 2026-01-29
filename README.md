@@ -34,7 +34,7 @@ For initial setup, you'll need to create an admin account:
 ### Prerequisites
 - Python 3.8+
 - pip package manager
-- Webcam (for object detection)
+- lO
 - Modern web browser
 
 ### Installation
