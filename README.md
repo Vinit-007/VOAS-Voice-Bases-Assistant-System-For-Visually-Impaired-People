@@ -16,18 +16,6 @@ A cutting-edge web-based assistive system that combines real-time AI-powered obj
 - **Vision Health Tracking**: Monitor and document vision-related medical information
 - **Secure Data Storage**: HIPAA-compliant medical information management
 
-### 👥 Advanced User Management
-- **Dual Authentication System**: Separate secure login systems for users and administrators
-- **Enhanced Security**: Password hashing, CSRF protection, and session management
-- **Profile Management**: Update personal information with real-time validation
-- **Admin Dashboard**: Comprehensive user and medical records management with analytics
-
-### 🛡️ Enterprise-Grade Security
-- **CSRF Protection**: Cross-site request forgery prevention
-- **Secure Session Management**: Separate encrypted sessions for users and admins
-- **Password Security**: Advanced password hashing using Werkzeug
-- **Input Validation**: Comprehensive form validation and XSS prevention
-
 ## 🔑 Admin Setup
 
 For initial setup, you'll need to create an admin account:
