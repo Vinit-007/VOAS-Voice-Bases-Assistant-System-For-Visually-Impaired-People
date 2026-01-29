@@ -1,8 +1,8 @@
-# VisionAssist Pro - Smart Assistance for Visually Impaired
+# VisionAssist Pro -Voice Based Assistant System For Visually Impaired People 
 
 A cutting-edge web-based assistive system that combines real-time AI-powered object detection, intelligent voice guidance, and comprehensive medical information management to empower visually impaired individuals in their daily lives.
 
-## 🌟 Revolutionary Features
+## Features
 
 ### 👁️ AI-Powered Object Detection
 - **Real-time YOLOv3 Detection**: Identifies 80+ common objects with 95%+ accuracy
